@@ -1,0 +1,198 @@
+﻿<Window x:Class="Microprocessor8085Simulator.MainWindow" Name="Anuj"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:y="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
+        Title="Microprocessor 8085 Simulator" xmlns:my="clr-namespace:Microprocessor8085Simulator" KeyDown="Window_KeyDown" Height="700" Width="900" HorizontalContentAlignment="Left" HorizontalAlignment="Center" Topmost="False" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Brown" Offset="0" />
+                    <GradientStop Color="White" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Menu Background="{StaticResource GPB}" Height="148" VerticalAlignment="Top">
+                <MenuItem FontSize="16" Header="_File">
+                    <MenuItem Header="_New..." Click="MenuItemNew_Click"/>
+                    <MenuItem Header="_Open..." Command="Open"/>
+                    <MenuItem Header="_Save" Command="Save"/>
+                    <Separator/>
+                    <MenuItem Header="_Exit" Command="Close"/>
+                </MenuItem>
+                <MenuItem FontSize="16" Header="_Edit">
+                    <MenuItem Header="Cut" Command="Cut"/>
+                    <MenuItem Header="Copy" Command="Copy"/>
+                    <MenuItem Header="Paste" Command="Paste"/>
+                </MenuItem>
+                <MenuItem FontSize="16" Header="_Options">
+                    <MenuItem Header="Set Starting Address" Click="MenuSetStartAdd_Click"/>
+                    <MenuItem Header="Clear Memory" Click="MenuItemClearMemory_Click"/>
+                    <Separator></Separator>
+                    <MenuItem Header="Preferences" Click="MenuItemPreferences_Click"/>
+                </MenuItem>
+                <MenuItem FontSize="16" Header="_Help">
+                    <MenuItem Header="_About" Click="MenuAbout_Click"/>
+                </MenuItem>
+            </Menu>
+
+            <TabControl Margin="0,125,0,-43" Name="tabControl1">
+                <TabControl.Background>
+                    <SolidColorBrush />
+                </TabControl.Background>
+                <TabItem Header="Home">
+                    <Grid Height="580">
+                        <Canvas Height="80" HorizontalAlignment="Left" Margin="455,19,0,0" Name="canvas1" VerticalAlignment="Top" Width="250" Background="BlanchedAlmond">
+                            <Label Canvas.Left="59" Canvas.Top="5" Content="Program Status Word" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label2" Width="125" />
+                            <Label Canvas.Left="20" Canvas.Top="40" Content="A" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label4" />
+                            <Label Canvas.Left="142" Canvas.Top="40" Content="F" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label5" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="175" Canvas.Top="40" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbF" TextAlignment="Center" Width="48" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="50" Canvas.Top="40" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbA" TextAlignment="Center" Width="48" />
+                        </Canvas>
+                        <Canvas Background="BlanchedAlmond" Height="100" HorizontalAlignment="Left" Margin="455,119,0,0" Name="canvas3" VerticalAlignment="Top" Width="250">
+                            <Label Canvas.Left="78" Canvas.Top="5" Content="Flag Register" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label6" Width="78" />
+                            <Label Canvas.Left="9" Canvas.Top="32" Content="S" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label7" />
+                            <TextBox Focusable="False" Canvas.Left="10" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF7" TextAlignment="Center" Width="20" />
+                            <Label Canvas.Left="40" Canvas.Top="32" Content="Z" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="31" Name="label8" />
+                            <TextBox Focusable="False" Canvas.Left="40" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF6" TextAlignment="Center" Width="20" />
+                            <Label Canvas.Left="70" Canvas.Top="32" Content="X" FontSize="16" FontWeight="Bold" Foreground="Sienna" Name="label9" />
+                            <TextBox Focusable="False" Canvas.Left="70" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF5" Text="0" TextAlignment="Center" Width="20" />
+                            <Label Canvas.Left="95" Canvas.Top="32" Content="AC" FontSize="16" FontWeight="Bold" Foreground="Sienna" Name="label10" />
+                            <TextBox Focusable="False" Canvas.Left="100" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF4" TextAlignment="Center" Width="20" />
+                            <Label Canvas.Left="130" Canvas.Top="32" Content="X" FontSize="16" FontWeight="Bold" Foreground="Sienna" Name="label11" />
+                            <TextBox Focusable="False" Canvas.Left="130" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF3" Text="0" TextAlignment="Center" Width="20" />
+                            <Label Canvas.Left="159" Canvas.Top="32" Content="P" FontSize="16" FontWeight="Bold" Foreground="Sienna" Name="label12" />
+                            <TextBox Focusable="False" Canvas.Left="160" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF2" TextAlignment="Center" Width="20" />
+                            <Label Canvas.Left="190" Canvas.Top="32" Content="X" FontSize="16" FontWeight="Bold" Foreground="Sienna" Name="label13" />
+                            <TextBox Focusable="False" Canvas.Left="190" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF1" Text="0" TextAlignment="Center" Width="20" />
+                            <Label Canvas.Left="216" Canvas.Top="32" Content="CF" FontSize="16" FontWeight="Bold" Foreground="Sienna" Name="label14" />
+                            <TextBox Focusable="False" Canvas.Left="220" Canvas.Top="63" FontSize="18" FontWeight="Bold" Height="30" MaxLength="1" Name="tbF0" TextAlignment="Center" Width="20" />
+                        </Canvas>
+                        <Canvas Background="BlanchedAlmond" Height="252" HorizontalAlignment="Left" Margin="455,239,0,0" Name="canvas4" VerticalAlignment="Top" Width="250">
+                            <Label Canvas.Left="48" Canvas.Top="6" Content="General Purpose Registers" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label18" Width="152" />
+                            <Label Canvas.Left="23" Canvas.Top="43" Content="B" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label19" />
+                            <Label Canvas.Left="141" Canvas.Top="43" Content="C" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label20" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="176" Canvas.Top="43" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbC" TextAlignment="Center" Width="48" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="59" Canvas.Top="43" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbB" TextAlignment="Center" Width="48" />
+                            <Label Canvas.Left="23" Canvas.Top="88" Content="D" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label21" />
+                            <Label Canvas.Left="141" Canvas.Top="88" Content="E" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label22" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="176" Canvas.Top="88" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbE" TextAlignment="Center" Width="48" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="59" Canvas.Top="88" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbD" TextAlignment="Center" Width="48" />
+                            <Label Canvas.Left="23" Canvas.Top="138" Content="H" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label23" />
+                            <Label Canvas.Left="141" Canvas.Top="138" Content="L" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label24" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="176" Canvas.Top="138" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbL" TextAlignment="Center" Width="48" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="59" Canvas.Top="138" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbH" TextAlignment="Center" Width="48" />
+                            <Label Canvas.Left="74" Canvas.Top="179" Content="Memory Pointer" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label25" Width="99" />
+                            <Label Canvas.Left="36" Canvas.Top="210" Content="M = (HL)" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label26" />
+                            <my:myTextBox2d Focusable="False" Canvas.Left="152" Canvas.Top="210" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbM" TextAlignment="Center" Width="48" />
+                        </Canvas>
+
+                        <Canvas Background="BlanchedAlmond" Height="72" HorizontalAlignment="Left" Margin="51,132,0,0" Name="canvas2" VerticalAlignment="Top" Width="360">
+                            <Label Canvas.Left="70" Canvas.Top="2" Content="Program Counter and Stack Pointer" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label15" Width="197" />
+                            <Label Canvas.Left="32" Canvas.Top="33" Content="PC" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label16" />
+                            <Label Canvas.Left="206" Canvas.Top="33" Content="SP" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label17" />
+                            <TextBox MaxLength="4" Focusable="False" Canvas.Left="251" Canvas.Top="33" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbSP" TextAlignment="Center" Width="60" />
+                            <TextBox MaxLength="4" Focusable="False" Canvas.Left="81" Canvas.Top="33" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbPC" TextAlignment="Center" Width="60" />
+                        </Canvas>
+                        <Canvas Background="BlanchedAlmond" Height="101" HorizontalAlignment="Left" Margin="51,217,0,0" Name="canvas5" VerticalAlignment="Top" Width="360">
+                            <Label Canvas.Left="111" Canvas.Top="2" Content="Simulation Statistics" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label27" Width="115" />
+                            <Label Canvas.Left="24" Canvas.Top="28" Content="Clock Cycles Counter" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label28" />
+                            <Label Canvas.Left="27" Canvas.Top="64" Content="Instruction Counter" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label29" />
+                            <TextBox Focusable="False" Canvas.Left="231" Canvas.Top="28" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbCCC" TextAlignment="Center" Width="90" Text="0" />
+                            <TextBox Focusable="False" Canvas.Left="231" Canvas.Top="64" FontSize="18" FontWeight="Bold" Height="30" x:Name="tbIC" TextAlignment="Center" Width="90" Text="0" />
+                        </Canvas>
+                        <Canvas Background="BlanchedAlmond" Height="101" HorizontalAlignment="Left" Margin="51,18,0,0" Name="canvas6" VerticalAlignment="Top" Width="360">
+                            <Label Canvas.Left="131" Canvas.Top="1" Content="Instructions" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label30" Width="73" />
+                            <Label Canvas.Left="12" Canvas.Top="29" Content="Last Instruction" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label31" />
+                            <Label Canvas.Left="11" Canvas.Top="64" Content="Next Instruction" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label32" />
+                            <TextBox Focusable="False" Canvas.Left="161" Canvas.Top="29" FontSize="18" FontWeight="Bold" Height="30" Name="tbLI" TextAlignment="Center" Width="180" />
+                            <TextBox Focusable="False" Canvas.Left="160" Canvas.Top="65" FontSize="18" FontWeight="Bold" Height="30" Name="tbNI" TextAlignment="Center" Width="180" />
+                        </Canvas>
+                        <Canvas Background="BlanchedAlmond" HorizontalAlignment="Left" VerticalAlignment="Top" Height="75" Name="canvas7" Width="360" Margin="51,415,0,0">
+                            <Label Canvas.Left="116" Canvas.Top="2" Content="Interrupt Control" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label33" Width="103" />
+                            <Button Canvas.Left="28" Canvas.Top="32" Content="TRAP" Height="30" Name="bTrap" Width="45" Click="bInterrrup_Click" />
+                            <Button Canvas.Left="92" Canvas.Top="32" Content="RST 7.5" Height="30" Name="bR75" Width="45" Click="bInterrrup_Click" />
+                            <Button Canvas.Left="158" Canvas.Top="32" Content="RST 6.5" Height="30" Name="bR65" Width="45" Click="bInterrrup_Click" />
+                            <Button Canvas.Left="224" Canvas.Top="32" Content="RST 5.5" Height="30" Name="bR55" Width="45" Click="bInterrrup_Click" />
+                            <Button Canvas.Left="288" Canvas.Top="32" Content="INTR" Height="30" Name="bIntr" Width="45" Click="bIntr_Click" />
+                        </Canvas>
+                        <Canvas Background="BlanchedAlmond" Height="70" HorizontalAlignment="Left" Margin="51,332,0,0" Name="canvas9" VerticalAlignment="Top" Width="360">
+                            <Label Canvas.Left="107" Canvas.Top="4" Content="Serial Data Transfer" FontFamily="Segoe UI" Foreground="Brown" Height="28" Name="label42" Width="118" />
+                            <Label Canvas.Left="17" Canvas.Top="30" Content="SOD" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label43" />
+                            <TextBox Canvas.Left="72" Canvas.Top="31" Focusable="False" FontSize="18" FontWeight="Bold" Height="30" Name="tbSod" TextAlignment="Center" Width="30" Text="0" MaxLength="1" />
+                            <Label Canvas.Left="169" Canvas.Top="30" Content="SID" FontSize="16" FontWeight="Bold" Foreground="Sienna" Height="30" Name="label44" />
+                            <RadioButton FontSize="16" Canvas.Left="222" Canvas.Top="35" Content="  0  " Height="20" IsChecked="True" Name="rbSid0" />
+                            <RadioButton FontSize="16" Canvas.Left="281" Canvas.Top="35" Content="  1  " Height="20" IsChecked="True" Name="rbSid1" />
+                        </Canvas>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Assembler" Name="assemblerTab">
+                    <Grid Name="AssemblerGrid">
+                        <RichTextBox AcceptsReturn="True"  AcceptsTab="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="440" Name="rtb1" Width="350" HorizontalAlignment="Left" Margin="31,75,0,0" VerticalAlignment="Top" FontSize="14" TextChanged="rtb1_TextChanged">
+                            <RichTextBox.Document>
+                                <FlowDocument LineHeight="1">
+                                </FlowDocument>
+                            </RichTextBox.Document>
+                        </RichTextBox>
+                        <RichTextBox IsReadOnly="True" Height="440" Width="425" HorizontalAlignment="Left" Margin="415,75,0,0" Name="rtb2" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto" Background="White">
+                            <RichTextBox.BorderBrush>
+                                <SolidColorBrush />
+                            </RichTextBox.BorderBrush>
+                            <RichTextBox.Document>
+                                <FlowDocument LineHeight="1">
+                                </FlowDocument>
+                            </RichTextBox.Document>
+                        </RichTextBox>
+                        <Button Content="Assemble" Height="23" HorizontalAlignment="Left" Margin="71,30,0,0" Name="bAssemble" VerticalAlignment="Top" Width="75" Click="bAssemble_Click" />
+                        <Button Content="Load into Memory" Height="23" Margin="227,30,0,0" Name="bLoad" VerticalAlignment="Top" HorizontalAlignment="Left" Width="111" Click="bLoad_Click" IsEnabled="False" />
+                        <Label Content="ASSEMBLED CODE" Height="28" HorizontalAlignment="Left" Margin="549,25,0,0" Name="label46" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="16" FontFamily="Segoe UI" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Disassembler" Name="tabItem2">
+                    <Grid>
+                        <Button Content="Disassemble" Height="36" HorizontalAlignment="Left" Margin="366,47,0,0" Name="bDisassembler" VerticalAlignment="Top" Width="97" FontSize="14" Click="bDisassembler_Click" />
+                        <Label Content="Disassemble Memory " FontSize="22" Height="40" HorizontalAlignment="Left" Margin="21,5,0,0" Name="label39" VerticalAlignment="Top" Foreground="White" FontWeight="Bold" Width="230" />
+                        <Label Content="FROM" FontSize="16" Height="30" HorizontalAlignment="Left" Margin="39,49,0,0" Name="label40" VerticalAlignment="Top" Foreground="White" />
+                        <my:myTextBox4d FontSize="18" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="105,49,0,0" x:Name="tbStartAddress" VerticalAlignment="Top" Width="70" Text="0000" />
+                        <my:myTextBox4d FontSize="18" FontWeight="Bold" Height="28" HorizontalAlignment="Left" Margin="238,49,0,0" x:Name="tbEndAddress" VerticalAlignment="Top" Width="70" Text="0000" />
+                        <Label Content="TO" FontSize="16" Foreground="White" Height="30" HorizontalAlignment="Left" Margin="198,49,0,0" Name="label41" VerticalAlignment="Top" />
+                        <RichTextBox Background="White" Height="420" HorizontalAlignment="Left" IsReadOnly="True" Margin="39,94,0,0" Name="rtb3" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto" Width="425">
+                            <RichTextBox.Document>
+                                <FlowDocument LineHeight="1" />
+                            </RichTextBox.Document>
+                        </RichTextBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Memory / IO Editor" Name="tabItem1">
+                    <Grid Height="580">
+                        <my:myTextBox4d Height="30" FontSize="18" Margin="70,38,0,0" VerticalAlignment="Top" BorderBrush="Black" x:Name="tbGo" HorizontalAlignment="Left" Width="60" Text="0000" KeyDown="tbGo_KeyDown" />
+                        <Button Content="Go" Height="30" Margin="186,38,0,0" Name="go" VerticalAlignment="Top" Click="go_Click" HorizontalAlignment="Left" Width="55" IsDefault="False" />
+                        <Label Content="View" FontFamily="Cooper" FontSize="16" FontWeight="Bold" Height="34" HorizontalAlignment="Left" Margin="495,5,0,0" Name="label3" VerticalAlignment="Top" Width="53" Foreground="BlanchedAlmond"></Label>
+                        <Label Content="Goto Memory" FontFamily="Cooper" FontSize="16" FontWeight="Bold" Height="34" HorizontalAlignment="Left" Margin="92,5,0,0" Name="label1" VerticalAlignment="Top" Width="126" Foreground="BlanchedAlmond" />
+                        <Grid Name="myGrid" Height="400" VerticalAlignment="Top" Margin="68,113,0,0" HorizontalAlignment="Left" Width="550"/>
+                        <RadioButton Content="  MEMORY  " FontSize="18" Height="25" HorizontalAlignment="Left" Margin="404,38,0,0" Name="rbMemory" VerticalAlignment="Top" Checked="rbMIO_Checked" />
+                        <RadioButton Content="  IO  " FontSize="18" Height="25" HorizontalAlignment="Left" Margin="565,38,0,0" Name="rbIo" VerticalAlignment="Top" Checked="rbMIO_Checked" />
+                        <Button Content="Next" Height="28" HorizontalAlignment="Left" Margin="492,80,0,0" Name="bNext" VerticalAlignment="Top" Width="56" Click="bNext_Click" />
+                        <Button Content="Last" Height="28" HorizontalAlignment="Left" Margin="563,80,0,0" Name="bLast" VerticalAlignment="Top" Width="56" IsEnabled="False" Click="bLast_Click" />
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <Label FontSize="16" Content="Run" Height="30" HorizontalAlignment="Left" Margin="13,35,0,0" Name="label34" VerticalAlignment="Top" />
+            <Button Content="START" Height="22" HorizontalAlignment="Left" Margin="73,41,0,0" Name="bStart" VerticalAlignment="Top" Width="50" Click="bStart_Click"></Button>
+            <Button Content="STEP" Height="22" HorizontalAlignment="Left" Margin="140,41,0,0" Name="bStep" VerticalAlignment="Top" Width="50" Click="bStep_Click" />
+            <Button Content="STOP" Height="22" HorizontalAlignment="Left" Margin="206,41,0,0" Name="bStop" VerticalAlignment="Top" Width="50" Click="bStop_Click" />
+            <Label Content="Execution Mode" FontSize="16" Height="30" HorizontalAlignment="Left" Margin="287,35,0,0" Name="label35" VerticalAlignment="Top" />
+            <RadioButton Checked="rbEM_Checked"  IsChecked="False" FontSize="14"  Content="  FAST  " Height="20" HorizontalAlignment="Left" Margin="505,41,0,0" Name="rbFast" VerticalAlignment="Top" />
+            <RadioButton FontSize="14" Checked="rbEM_Checked" Content="  STEP  " Height="20" HorizontalAlignment="Left" Margin="428,41,0,0" Name="rbStep" VerticalAlignment="Top" IsChecked="True" />
+
+            <Label Content="PC" FontSize="16" HorizontalAlignment="Left" Margin="155,62,0,0" Name="label36" Height="31" VerticalAlignment="Top" />
+            <TextBox MaxLength="4" Background="Transparent"  FontSize="16" FontWeight="Bold" Height="25" Margin="141,92,0,0" x:Name="tbPCMenu" TextAlignment="Center" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox Focusable="False" Background="Transparent" FontSize="16" FontWeight="Bold" Height="25" Margin="230,92,0,0" Name="tbLIMenu" TextAlignment="Center" Width="180" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <TextBox Focusable="False" Background="Transparent" FontSize="16" FontWeight="Bold" Height="25" Margin="459,92,0,0" Name="tbNIMenu" TextAlignment="Center" Width="180" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <Label Content="Last Instruction" FontSize="16" Height="30" HorizontalAlignment="Left" Margin="259,62,0,0" Name="label37" VerticalAlignment="Top" />
+            <Label Content="Next Instruction" FontSize="16" Height="30" HorizontalAlignment="Left" Margin="487,62,0,0" Name="label38" VerticalAlignment="Top" />
+            <Button Content="RESET" Height="25" Margin="47,94,0,0" Name="bReset" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <Label Content="Reset 8085" FontSize="16" Height="31" HorizontalAlignment="Left" Margin="28,64,0,0" Name="label45" VerticalAlignment="Top" />
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,11 @@
+﻿<Window x:Class="Microprocessor8085Simulator.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About" Height="250" Width="500" ResizeMode="CanResizeWithGrip" ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+    <Grid Background="{StaticResource GPB}">
+        <Label Content="Microprocessor 8085 Simulator" Height="49" HorizontalAlignment="Center" Margin="0,30,0,0" Name="label1" VerticalAlignment="Top" Foreground="Black" FontFamily="Cambria Math" FontSize="30" />
+        <Label Content="Created By: Anuj Agrawal" Height="40" HorizontalAlignment="Center" Margin="0,90,0,0" Name="label2" VerticalAlignment="Top" FontSize="20" />
+        <Label Content="Website: http://www.anujgeek.com/" FontSize="20" Height="40" HorizontalAlignment="Center" Margin="0,120,0,0" Name="label3" VerticalAlignment="Top" />
+        <Button Content="OK" Height="23" HorizontalAlignment="Center" Margin="0,175,0,0" Name="button1" VerticalAlignment="Top" Width="75" IsDefault="True" Click="button1_Click" />
+    </Grid>
+</Window>
