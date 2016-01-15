@@ -1,7 +1,9 @@
 # Microprocessor 8085 Simulator
 Created by: Anuj Agrawal (Website: http://www.anujgeek.com/)
 <br>
-Created using: C#, WPF
+Created using:
+<br>
+FrontEnd: C#, WPF
 
 ## Description
 Simulates the programming model of an 8085 microprocessor featuring a complete IDE with integrated assembler, disassembler and I/O Editor.
